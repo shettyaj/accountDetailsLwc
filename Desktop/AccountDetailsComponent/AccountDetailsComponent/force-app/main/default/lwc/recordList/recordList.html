@@ -1,0 +1,43 @@
+<template>  
+    <lightning-card title="Accounts List" icon-name="custom:custom63">  
+      <div class="slds-m-around_medium">  
+         
+        <template if:true={accounts}>  
+          <table  
+            class="slds-table slds-table_bordered slds-table_striped slds-table_cell-buffer slds-table_fixed-layout">  
+            <thead>  
+              <tr class="slds-text-heading_label">   
+                <th scope="col">  
+                  <div class="slds-truncate" title="Name">Name</div>  
+                </th> 
+                <th scope="col">  
+                    <div class="slds-truncate" title="Type">Type</div>  
+                  </th> 
+                <th scope="col">  
+                  <div class="slds-truncate" title="Industry">Industry</div>  
+                </th>  
+              </tr>  
+            </thead>  
+            <tbody>  
+              <!-- Use the Apex model and controller to fetch server side data -->  
+              <template for:each={accounts} for:item="account">  
+                <tr key={account.Id}>   
+                  <td>  
+                    <div class="slds-truncate" title={account.Name}>{account.Name}</div>  
+                  </td> 
+                  <th scope="row">  
+                    <div class="slds-truncate" title={account.Type}>{account.Type}</div>  
+                  </th> 
+                  <th scope="row">  
+                    <div class="slds-truncate" title={account.Industry}>{account.Industry}</div>  
+                  </th>  
+                </tr>  
+              </template>  
+            </tbody>  
+          </table>  
+        </template>  
+      </div>  
+      <p class="slds-m-vertical_medium content" style="text-align: center">Total records: <b>{totalrecords} </b> Page <b>{currentpage}</b> of  
+        <b> {totalpages}</b></p>  
+    </lightning-card>  
+  </template>  

@@ -1,0 +1,50 @@
+<template>
+
+    <lightning-card title="Related Contacts" icon-name="standard:contact">
+            <!-- Contact Data Table -->
+            <div class="slds-p-around_x-small">
+            <template if:true={Option}>       
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered" >
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Contact Name">Contact Name</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Email">Email</div>
+                            </th>
+                            <th class="" scope="col">
+                                    <div class="slds-truncate" title="Phone">Phone</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Display Contact Data -->
+                        
+                        <template for:each={Option} for:item="item">
+                        
+                            <tr key={item.id} class="slds-hint-parent">
+                                
+                                <td data-label="Prospecting">
+                                    <div class="slds-truncate" title="Contact Name">{item.Name}</div>
+                                </td>
+                                <td data-label="Confidence">
+                                    <div class="slds-truncate" title="Email">{item.Email}</div>
+                                </td>
+                                <td data-label="Confidence">
+                                        <div class="slds-truncate" title="Phone">{item.Phone}</div>
+                                </td>                               
+                            </tr>
+                        
+                        </template>
+                        
+                    </tbody>
+                
+                </table>
+            </template>
+            
+            </div>
+        </lightning-card>
+
+
+</template>

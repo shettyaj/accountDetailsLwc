@@ -1,0 +1,56 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "c/accountListEdit": [
+                "accountListEdit/accountListEdit.js"
+            ],
+            "c/asm_UserSignUpPage": [
+                "asm_UserSignUpPage/asm_UserSignUpPage.js"
+            ],
+            "c/asm_assestDetailsPage": [
+                "asm_assestDetailsPage/asm_assestDetailsPage.js"
+            ],
+            "c/asm_assetApproverPage": [
+                "asm_assetApproverPage/asm_assetApproverPage.js"
+            ],
+            "c/asm_banner": [
+                "asm_banner/asm_banner.js"
+            ],
+            "c/asm_ideaRegistrationForm": [
+                "asm_ideaRegistrationForm/asm_ideaRegistrationForm.js"
+            ],
+            "c/fetchContactRecords": [
+                "fetchContactRecords/fetchContactRecords.js"
+            ],
+            "c/fetchRecords": [
+                "fetchRecords/fetchRecords.js"
+            ],
+            "c/navToRelatedList": [
+                "navToRelatedList/navToRelatedList.js"
+            ],
+            "c/paginationParent": [
+                "paginationParent/paginationParent.js"
+            ],
+            "c/paginatorBottom": [
+                "paginatorBottom/paginatorBottom.js"
+            ],
+            "c/recordList": [
+                "recordList/recordList.js"
+            ],
+            "c/updateRec": [
+                "updateRec/updateRec.js"
+            ]
+        }
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
+}

@@ -1,0 +1,147 @@
+<template>
+    <lightning-tabset variant="scoped">
+        <lightning-tab label="ALL">
+
+            <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+                <lightning-layout multiple-rows>
+                    <template for:each={Assets.data} for:item="asset">
+                        <lightning-layout-item key={asset.Id} size="4" padding="around-small">
+                            <div class="custom-box slds-box slds-p-around_medium slds-text-align_center" key={asset.Id}>
+                                <lightning-card key={asset} title={asset.Name} variant="Narrow"
+                                    style="text-align: center; text-size-adjust: 3px;">
+                                    <a name={asset.Id} href={url} onclick={handleClick}><img src={IdeaUrl}
+                                            height="250px" width="250px" style="text-align: center">
+
+                                        <div style="width:280px; padding-left: 50px">
+
+                                            <lightning-card>
+                                                <!-- <lightning-record-form record-id={asset.Id} object-api-name="Idea__c"
+                                                    layout-type="Full" columns="1" mode="readonly"
+                                                    onsuccess={handleSuccess}>
+                                                </lightning-record-form> <br/>
+                                                 <lightning-progress-bar value="10" size="medium" variant="circular"></lightning-progress-bar> -->
+                                                <div>
+                                                    <div class="slds-grid slds-grid_align-spread slds-p-bottom_x-small">
+                                                        <span>Status</span>
+                                                        <span aria-hidden="true">
+                                                            <strong>{progress}% Complete</strong>
+                                                        </span>
+                                                    </div>
+                                                    <lightning-progress-bar value={progress} size="medium"
+                                                        variant="circular"></lightning-progress-bar>
+                                                </div>
+                                            </lightning-card>
+                                            <div class="slds-p-around_medium lgc-bg" style="padding-left: 230px">
+                                                <!-- <lightning-button-icon-stateful icon-name="custom:custom1" selected={likeState} onclick={handleLikeButtonClick} alternative-text="Like" class="slds-m-left_xx-medium" ></lightning-button-icon-stateful> -->
+                                                <lightning-button-icon icon-name="custom:custom1" size="large"
+                                                    variant="bare" alternative-text="Like" class="slds-m-left_xx-small">
+                                                </lightning-button-icon>
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </a>
+                                </lightning-card>
+                            </div>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+
+            </div>
+        </lightning-tab>
+        <lightning-tab label="APPROVAL PENDING">
+            Ideas to be approved
+        </lightning-tab>
+        <lightning-tab label="IN PROGRESS">
+            Ideas in progress
+        </lightning-tab>
+        <lightning-tab label="COMPLETED">
+            Completed Ideas
+        </lightning-tab>
+        <lightning-tab label="REJECTED">
+            Rejected Ideas
+        </lightning-tab>
+    </lightning-tabset>
+
+
+    <!-- Modal PopUp -->
+    <template if:true={open}>
+        <div class="demo-only" style="height: 640px;">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close">
+                            <lightning-icon icon-name="utility:close" title="close" size="small" onclick={closeModal}
+                                variant="inverse"></lightning-icon>
+                        </button>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Asset Details</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <!--<lightning-radio-group name="radioGroup" options={options} value={value} type="button"
+                            style="float: right" onclick={changeStatus}>
+                        </lightning-radio-group>-->
+                        <fieldset class="slds-form-element" style="float: right">
+                                <div class="slds-form-element__control">
+                                  <div class="slds-radio_button-group">
+                                    <span class="slds-button slds-radio_button">
+                                      <input type="radio" name="radio" id="approve" value="approve" onclick={changeStatus} />
+                                      <label class="slds-radio_button__label" for="approve">
+                                        <span class="slds-radio_faux">Approve</span>
+                                      </label>
+                                    </span>
+                                     <span class="slds-button slds-radio_button">
+                                      <input type="radio" name="radio" id="reject" value="reject" onclick={changeStatus}/>
+                                      <label class="slds-radio_button__label" for="reject">
+                                        <span class="slds-radio_faux">Reject</span>
+                                      </label>
+                                    </span>
+                                  </div>
+                                </div>
+                        </fieldset>
+                         <br />
+                        <lightning-record-view-form record-id={recId} object-api-name="Idea__c" density="compact">
+
+                            <div class="slds-box slds-theme_default">
+                                <lightning-output-field field-name="Name"></lightning-output-field>
+                                <lightning-output-field field-name="Domain__c"></lightning-output-field>
+                                <lightning-output-field field-name="Estimated_Time__c"></lightning-output-field>
+                                <lightning-output-field field-name="Description__c"></lightning-output-field>
+                                <lightning-output-field field-name="Status__c"></lightning-output-field>
+                            </div>
+
+                        </lightning-record-view-form>
+
+                        <div class="slds-box slds-theme_default">
+
+                            <template if:true={picklistValues.data}>
+                                <lightning-combobox value={picklistValues.data.values}
+                                    options={picklistValues.data.values} placeholder="Select an Option"
+                                    label="Complexity" onchange={selectComplexity} variant="label-inline" required>
+                                </lightning-combobox>
+                            </template> <br />
+                            <lightning-input type="date" name="ideaTime" label="Change Estimated Time"
+                                variant="label-inline" onchange={handleTimeChange}></lightning-input><br />
+                            <lightning-textarea name="ideaComment" label="Comments" variant="label-inline"
+                                onchange={handleCommentsChange}></lightning-textarea><br />
+
+                        </div>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning-button variant="brand" type="submit" name="Submit" label="Submit"
+                            class="slds-m-left_x-small" onclick={handleSave}></lightning-button>
+                        <lightning-button label="Cancel" title="Cancel" onclick={closeModal}
+                            class="slds-m-left_x-small"></lightning-button>
+                    </footer>
+
+                </div>
+
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </template>
+
+</template>

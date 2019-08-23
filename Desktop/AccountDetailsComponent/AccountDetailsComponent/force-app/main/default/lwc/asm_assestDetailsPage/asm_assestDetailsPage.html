@@ -1,0 +1,60 @@
+<template>
+
+        <template if:true={dis}>
+        <lightning-card title="Assets Details">
+                <div style="width:1200px">
+
+                       
+                        <lightning-button icon-name="utility:chevronleft" label="Back"
+                        onclick={handleClick} class="slds-m-left_x-small" style="float: right"></lightning-button> 
+                        <!--
+                                <lightning-card title="Asset Details">                    
+                                        <lightning-record-form record-id={recId} object-api-name="Idea__c"
+                                        layout-type="Full" columns="2" mode="readonly"
+                                            onsuccess={handleSuccess}>
+                                       </lightning-record-form>               
+                                </lightning-card>
+                        -->
+                    
+                        <template if:true={Option}>       
+                                        <table class="slds-table slds-table_cell-buffer slds-table_bordered" >
+                                            <thead>
+                                                <tr class="slds-line-height_reset">
+                                                    <th class="" scope="col">
+                                                        <div class="slds-truncate" title="Asset Name">Asset Name</div>
+                                                    </th>
+                                                    <th class="" scope="col">
+                                                        <div class="slds-truncate" title="Asset Domain">Asset Domain</div>
+                                                    </th>
+                                                    <th class="" scope="col">
+                                                            <div class="slds-truncate" title="Asset Description">Asset Description</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                <template for:each={Option} for:item="item">
+                                                
+                                                    <tr key={item.id} class="slds-hint-parent">
+                                                        
+                                                        <td data-label="Prospecting">
+                                                            <div class="slds-truncate" title="Asset Name">{item.Name}</div>
+                                                        </td>
+                                                        <td data-label="Confidence">
+                                                            <div class="slds-truncate" title="Asset Domain">{item.Domain__c}</div>
+                                                        </td>
+                                                        <td data-label="Confidence">
+                                                                <div class="slds-truncate" title="Asset Description">{item.Description__c}</div>
+                                                        </td>                               
+                                                    </tr>
+                                                
+                                                </template>
+                                                
+                                            </tbody>
+                                        
+                                        </table>
+                                    </template>
+                </div>
+            </lightning-card>
+        </template>
+</template>

@@ -1,0 +1,83 @@
+<template>
+    <div class="slds-p-around_medium lgc-bg" style="background-color: white">
+        <lightning-button-group>
+            <lightning-button variant="Neutral" label="Sign Up" title="Sign Up" onclick={handleClick}
+                class="slds-align_absolute-center"></lightning-button>
+            <lightning-button variant="Neutral" label="Login" title="Login" onclick={handleClick1}
+                class="slds-align_absolute-center"></lightning-button>
+        </lightning-button-group>
+
+
+        <template if:true={open}>
+            <div class="demo-only" style="height: 640px;">
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                    aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                                title="Close">
+                                <lightning-icon icon-name="utility:close" title="close" size="small"
+                                    onclick={closeModal} variant="inverse"></lightning-icon>
+                            </button>
+                            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                                Sign Up Form</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                            <lightning-input type="text" name="name" label="Full Name" onchange={handleFullNameChange}>
+                            </lightning-input><br />
+
+                            <lightning-input type="email" name="email" label="Deloitte Email"
+                                onchange={handleEmailChange}></lightning-input><br />
+                            <lightning-input type="password" name="password" label="Password"
+                                onchange={handlePasswordChange}></lightning-input><br />
+
+
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <lightning-button variant="brand" label="save" title="Save" onclick={save}
+                                class="slds-m-right_x-small"></lightning-button>
+                            <lightning-button variant="Neutral" label="cancel" title="Cancel" onclick={closeModal}
+                                class="slds-m-right_x-small"></lightning-button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </div>
+        </template>
+
+
+        <template if:true={openLogin}>
+            <div class="demo-only" style="height: 640px;">
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                    aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                                title="Close">
+                                <lightning-icon icon-name="utility:close" title="close" size="small"
+                                    onclick={closeModal} variant="inverse"></lightning-icon>
+                            </button>
+                            <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">
+                                Login</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                            <lightning-input type="email" name="loginEmail" label="Deloitte Email"
+                                onchange={handleEmailChange}></lightning-input><br />
+                            <lightning-input type="password" name="loginPassword" label="Password"
+                                onchange={handlePasswordChange}></lightning-input><br />
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <lightning-button variant="brand" label="Login" title="Login" onclick={login}
+                                class="slds-m-right_x-small"></lightning-button>
+                            <lightning-button variant="Neutral" label="cancel" title="Cancel" onclick={closeModal}
+                                class="slds-m-right_x-small"></lightning-button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </div>
+        </template>
+
+    </div>
+
+</template>
